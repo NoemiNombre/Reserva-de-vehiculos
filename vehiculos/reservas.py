@@ -3,20 +3,30 @@ import pandas as pd
 #fun para crear la resrva
 def crearReserva(cliente, vehiculo, fechaInicio, fechaFin):
     return {
-        "Cliente": cliente,
-        "Vehiculo": vehiculo,
-        "Fecha de Inicio": fechaInicio,
-        "Fecha de Fin": fechaFin
+        "cliente": cliente,
+        "vehiculo": vehiculo,
+        "fechaInicio": fechaInicio,
+        "fechaFin": fechaFin
     }
         
 # func de mostrar reserva   
 def mostrarReserva(reserva):
+    cliente = f"{reserva["cliente"]["nombre"]} {reserva["cliente"]["apellido"]}"
+    vehiculo = f"{reserva["vehiculo"]["matricula"]} {reserva["vehiculo"]["modelo"]}"
     
-    
-    return (f"Su reserva de {reserva["Cliente"]}, del vehiculo {reserva["Vehiculo"]}. Con fecha de inicio: {reserva["Fecha de Inicio"]} hasta {reserva["Fecha de Fin"]}.")
+    return (f"Su reserva de {reserva["cliente"]}, del vehiculo {reserva["vehiculo"]}. Con fecha de inicio: {reserva["fechaInicio"]} hasta {reserva["fechaFin"]}.")
 
 #funcion para guardar los datos en un archico de csv
-def guardarReserva(reserva, archivo):
+def guardarReserva(reservas, archivo):
+    data = [{
+        "Cliente": f"{reserva["cliente"]["nombre"]} {reserva["cliente"]["apellido"]}",
+        "Vehiculo":f"{reserva["vehiculo"]["matricula"]} {reserva["vehiculo"]["modelo"]}",
+        "Fecha Inicio":f"{reserva["fechaInicio"]}",
+        "Fecha Fin":f"{reserva["fechaFin"]}"
+    } for reserva in reservas]
     
-    return
+    df = pd.DataFrame(data)
+    df.to_csv(archivo, index=False)
+  
     
+ 

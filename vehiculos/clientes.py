@@ -2,13 +2,13 @@
 
 def crearCliente(name,lastname,licence):
     return{
-        "Name": name, 
-        "Lastname": lastname,
-        "Licence": licence
+        "nombre": name, 
+        "apellido": lastname,
+        "licencia": licence
     }
     
 def mostrar_cliente(cliente):
-    return (f"{cliente["Name"]} {cliente["Lastname"]}, {cliente["Licence"]}")
+    return (f"{cliente["nombre"]} {cliente["apellido"]}, {cliente["licencia"]}")
 
 
 
